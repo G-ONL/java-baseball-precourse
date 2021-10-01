@@ -7,17 +7,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringTest {
 
-    @DisplayName("regex가 포함된 문자열에서 split 한 경우")
+    private String regex = ",";
+
+    @DisplayName("요구사항1 / 콤마가 포함된 문자열 / split / return split된 배열")
     @Test
-    void regex_포함된_문자열() {
-        final String[] actual = "1,2".split(",");
+    void 콤마가_포함된_문자열_콤마_기준으로_split() {
+        final String regexWithSentence = "1,2";
+        final String[] actual = regexWithSentence.split(regex);
         assertThat(actual).containsExactly("1", "2");
     }
 
-    @DisplayName("regex가 포함되지 않은 문자열에서 split 한 경우")
+    @DisplayName("요구사항1 / 콤마가 포함되지 않은 문자열 / split / return split되지 않은 배열")
     @Test
-    void regex_포함_안된_문자열() {
-        final String[] actual = "1".split(",");
+    void 콤마가_포함_안된_문자열_콤마_기준으로_split() {
+        final String regexWithoutSentence = "1";
+        final String[] actual = regexWithoutSentence.split(regex);
         assertThat(actual).containsExactly("1");
+    }
+
+    @DisplayName("요구사항2 / 괄호가 맨 앞, 맨 뒤로 포함된 문자열 / substring / return 괄호가 제거된 문자열")
+    @Test
+    void 괄호가_포함_된_문자열_substring() {
+        final String actual = "(1,2)".substring(1, 4);
+        assertThat(actual).isEqualTo("1,2");
     }
 }
