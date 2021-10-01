@@ -3,6 +3,8 @@ package study;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,5 +27,12 @@ public class SetTest {
     @Test
     void set_size_3() {
         assertThat(numbers.size()).isEqualTo(3);
+    }
+
+    @DisplayName("요구사항 2 / set {1,2,3} / contains(1,2,3) / return true ")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void set_contains_number(int number) {
+        assertThat(numbers.contains(number)).isTrue();
     }
 }
