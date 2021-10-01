@@ -44,7 +44,7 @@ public class StringTest {
     @Test
     void abc_index_4번_위치는_exception() {
         final String exceptionMessage = "String index out of range: 4";
-        assertThatThrownBy(()-> {
+        assertThatThrownBy(() -> {
             final char actual = "abc".charAt(4);
         }).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining(exceptionMessage);
