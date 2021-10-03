@@ -17,14 +17,28 @@ public class ValidatorTest {
     @ParameterizedTest
     @CsvSource(value = {"1234,false", "문자열,false", "null,false", " ,false", ",false", "012,false",}, nullValues = {"null"})
     void 인풋값_길이_3이_아니거나_문자이거나_0포함_일_경우_false(String input, boolean isValid) {
-        assertEquals(Validator.isValidInput(input), isValid);
+        assertEquals(Validator.isValidInputGameNumber(input), isValid);
     }
 
     @DisplayName("길이가 3가 이고, 숫자, 0이 포함 안 된 경우 return true")
     @Test
     void 인풋값_길이_3이고_숫자이고_0이_없을경우_true() {
         String input = "123";
-        assertThat(Validator.isValidInput(input)).isTrue();
+        assertThat(Validator.isValidInputGameNumber(input)).isTrue();
+    }
+
+    @DisplayName("1,2가 아니거나, 문자, 빈 문자열, null, 0이 포함된 경우 return false")
+    @ParameterizedTest
+    @CsvSource(value = {"1234,false", "문자열,false", "null,false", " ,false", ",false", "3,false",}, nullValues = {"null"})
+    void 인풋값_1_2가_아니면_false(String input, boolean isValid) {
+        assertEquals(Validator.isValidInputGameContinue(input), isValid);
+    }
+
+    @DisplayName("1,2인 경우 return true")
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "2,true"})
+    void 인풋값_1_2면_true(String input, boolean isValid) {
+        assertEquals(Validator.isValidInputGameContinue(input), isValid);
     }
 
     @DisplayName("0인 경우 return false")

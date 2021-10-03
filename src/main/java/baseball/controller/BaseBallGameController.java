@@ -4,6 +4,7 @@ import baseball.model.BaseBallGame;
 import baseball.model.Computer;
 import baseball.model.Player;
 import baseball.model.Result;
+import baseball.view.InputView;
 
 public class BaseBallGameController {
 
@@ -17,5 +18,15 @@ public class BaseBallGameController {
         } while (result.isMatchContinue());
     }
 
-
+    public static boolean isGameContinue() {
+        do {
+            int gameContinueNumber = InputView.inputGameContinue();
+            if ((gameContinueNumber) == 1) {
+                return true;
+            }
+            if (gameContinueNumber == 2) {
+                return false;
+            }
+        } while (true);
+    }
 }
