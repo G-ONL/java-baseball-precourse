@@ -52,56 +52,47 @@ public class Validator {
         }
     }
 
-    private static boolean isOneOrTwo(String input) {
-        if (!(input.equals("1") || input.equals("2"))) {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
+    private static boolean isNumber(String input) {
+        char[] inputChars = input.toCharArray();
+        for (char inputChar : inputChars) {
+            throwExceptionWhenIsNotTrue(!Character.isDigit(inputChar));
         }
+        return true;
+    }
+
+    private static boolean isOneOrTwo(String input) {
+        throwExceptionWhenIsNotTrue(!(input.equals("1") || input.equals("2")));
         return true;
     }
 
     private static boolean lengthCheck(Set value) {
-        if (value.size() != BaseBallConstants.GAME_RULE_LENGTH) {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-        }
+        throwExceptionWhenIsNotTrue(value.size() != BaseBallConstants.GAME_RULE_LENGTH);
         return true;
     }
 
     private static boolean isZero(int input) {
-        if (input == 0) {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-        }
+        throwExceptionWhenIsNotTrue(input == 0);
         return false;
     }
 
     private static boolean lengthCheck(String input) {
-        if (input.length() != BaseBallConstants.GAME_RULE_LENGTH) {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-        }
-        return true;
-    }
-
-    private static boolean isNumber(String input) {
-        char[] inputChars = input.toCharArray();
-        for (char inputChar : inputChars) {
-            if (!Character.isDigit(inputChar)) {
-                throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-            }
-        }
+        throwExceptionWhenIsNotTrue(input.length() != BaseBallConstants.GAME_RULE_LENGTH);
         return true;
     }
 
     private static boolean isContainZero(String input) {
-        if (input.contains("0")) {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-        }
+        throwExceptionWhenIsNotTrue(input.contains("0"));
         return true;
     }
 
     private static boolean isEmpty(String input) {
-        if (input == null || input == "") {
-            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
-        }
+        throwExceptionWhenIsNotTrue(input == null || input == "");
         return true;
     }
 
+    private static void throwExceptionWhenIsNotTrue(boolean isThrowException) {
+        if (isThrowException) {
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
+        }
+    }
 }

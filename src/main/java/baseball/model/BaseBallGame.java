@@ -13,12 +13,16 @@ public class BaseBallGame {
         Set<GameNumber> gameNumbers;
         do {
             gameNumbers = new LinkedHashSet<>();
-            char[] numbers = InputView.inputGameNumber().toCharArray();
-            for (char number : numbers) {
-                gameNumbers.add(new GameNumber(Character.getNumericValue(number)));
-            }
+            settingGameNumbersByInputValue(gameNumbers);
         } while (!Validator.isValidGameNumbers(gameNumbers));
         return new GameNumbers(gameNumbers);
+    }
+
+    private static void settingGameNumbersByInputValue(Set<GameNumber> gameNumbers) {
+        char[] numbers = InputView.inputGameNumber().toCharArray();
+        for (char number : numbers) {
+            gameNumbers.add(new GameNumber(Character.getNumericValue(number)));
+        }
     }
 
     public static Result match(Player player, Computer computer) {

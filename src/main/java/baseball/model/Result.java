@@ -18,14 +18,20 @@ public class Result {
     }
 
     public String gameResult() {
-        StringBuilder stringBuilder = new StringBuilder();
         if (isNotThing()) return ViewConstants.NOTING;
-        if (strikeCount > 0) stringBuilder.append(strikeCount).append(ViewConstants.STRIKE);
-        if (strikeCount > 0 && ballCount > 0) stringBuilder.append(" ");
-        if (ballCount > 0) stringBuilder.append(ballCount).append(ViewConstants.BALL);
-        if (strikeCount == BaseBallConstants.GAME_RULE_LENGTH)
-            stringBuilder.append("\n").append(ViewConstants.GAME_END);
+        StringBuilder stringBuilder = settingStringForResult();
         return stringBuilder.toString();
+    }
+
+    private StringBuilder settingStringForResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (strikeCount > 0) stringBuilder.append(strikeCount).append(ViewConstants.STRIKE);
+        if (strikeCount > 0 && ballCount > 0) stringBuilder.append(ViewConstants.SPACE);
+        if (ballCount > 0) stringBuilder.append(ballCount).append(ViewConstants.BALL);
+        if (strikeCount == BaseBallConstants.GAME_RULE_LENGTH) {
+            stringBuilder.append(ViewConstants.NEW_LINE).append(ViewConstants.GAME_END);
+        }
+        return stringBuilder;
     }
 
     private boolean isNotThing() {

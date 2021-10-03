@@ -20,14 +20,10 @@ public class BaseBallGameController {
     }
 
     public static boolean isGameContinue() {
-        do {
-            int gameContinueNumber = InputView.inputGameContinue();
-            if (gameContinueNumber == BaseBallConstants.CONTINUE) {
-                return true;
-            }
-            if (gameContinueNumber == BaseBallConstants.END) {
-                return false;
-            }
-        } while (true);
+        int gameContinueNumber = InputView.inputGameContinue();
+        if (gameContinueNumber == BaseBallConstants.CONTINUE) {
+            return true;
+        }
+        return false;
     }
 }

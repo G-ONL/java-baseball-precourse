@@ -9,4 +9,6 @@ public class ViewConstants {
     public static final String STRIKE = "스트라이크";
     public static final String BALL = "볼";
     public static final String GAME_END = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+    public static final String NEW_LINE = "\n";
+    public static final String SPACE = " ";
 }
