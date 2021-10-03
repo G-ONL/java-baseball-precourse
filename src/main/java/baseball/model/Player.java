@@ -7,4 +7,8 @@ public class Player {
     public Player(GameNumbers gameNumbers) {
         this.gameNumbers = gameNumbers;
     }
+
+    public GameNumbers getGameNumbers() {
+        return gameNumbers;
+    }
 }

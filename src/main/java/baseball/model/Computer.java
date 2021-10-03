@@ -5,19 +5,18 @@ import nextstep.utils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Computer {
-
-    private final GameNumbers goalNumbers;
+public class Computer{
+    private final GameNumbers targetNumbers;
 
     public Computer() {
         Set<GameNumber> numbers = new LinkedHashSet<>();
         while (numbers.size() != 3) {
             numbers.add(new GameNumber(Randoms.pickNumberInRange(1, 9)));
         }
-        goalNumbers = new GameNumbers(numbers);
+        this.targetNumbers = new GameNumbers(numbers);
     }
 
-    public GameNumbers getGoalNumbers() {
-        return this.goalNumbers;
+    public GameNumbers getTargetNumbers() {
+        return this.targetNumbers;
     }
 }

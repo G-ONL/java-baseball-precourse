@@ -1,16 +1,16 @@
 package baseball.controller;
 
-import baseball.model.BaseBallGame;
-import baseball.model.Computer;
-import baseball.model.Player;
+import baseball.model.*;
 
 public class BaseBallGameController {
 
     public static void gameStart() {
         Computer computer = new Computer();
+        Result result;
         do {
             Player player = new Player(BaseBallGame.createGameNumbers());
-        } while (false);
+            result = GameMather.match(player, computer);
+        } while (result.isContinue());
         //return result
     }
 

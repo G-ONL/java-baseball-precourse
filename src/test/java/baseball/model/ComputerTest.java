@@ -17,7 +17,9 @@ public class ComputerTest {
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 3, 5);
             Computer computer = new Computer();
-            assertThat(computer.getGoalNumbers()).isInstanceOf(GameNumbers.class);
+            int index = 0;
+            assertThat(computer.getTargetNumbers()).isInstanceOf(GameNumbers.class);
+            assertThat(computer.getTargetNumbers().getGameNumber(index)).isEqualTo(new GameNumber(1));
         }
     }
 }
