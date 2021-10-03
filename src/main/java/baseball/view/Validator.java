@@ -1,11 +1,11 @@
 package baseball.view;
 
+import baseball.common.BaseBallConstants;
 import baseball.common.ViewConstants;
 
 import java.util.Set;
 
 public class Validator {
-    private final static int GAME_RULE_LENGTH = 3;
 
     public static boolean isValidGameNumbers(Set numbers) {
         try {
@@ -60,7 +60,7 @@ public class Validator {
     }
 
     private static boolean lengthCheck(Set value) {
-        if (value.size() != GAME_RULE_LENGTH) {
+        if (value.size() != BaseBallConstants.GAME_RULE_LENGTH) {
             throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
@@ -74,7 +74,7 @@ public class Validator {
     }
 
     private static boolean lengthCheck(String input) {
-        if (input.length() != GAME_RULE_LENGTH) {
+        if (input.length() != BaseBallConstants.GAME_RULE_LENGTH) {
             throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;

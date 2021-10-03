@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.common.BaseBallConstants;
 import baseball.common.ViewConstants;
 
 public class Result {
@@ -12,7 +13,7 @@ public class Result {
     }
 
     public boolean isMatchContinue() {
-        if (strikeCount == 3) return false;
+        if (strikeCount == BaseBallConstants.GAME_RULE_LENGTH) return false;
         return true;
     }
 
@@ -22,7 +23,8 @@ public class Result {
         if (strikeCount > 0) stringBuilder.append(strikeCount).append(ViewConstants.STRIKE);
         if (strikeCount > 0 && ballCount > 0) stringBuilder.append(" ");
         if (ballCount > 0) stringBuilder.append(ballCount).append(ViewConstants.BALL);
-        if (strikeCount == 3) stringBuilder.append("\n").append(ViewConstants.GAME_END);
+        if (strikeCount == BaseBallConstants.GAME_RULE_LENGTH)
+            stringBuilder.append("\n").append(ViewConstants.GAME_END);
         return stringBuilder.toString();
     }
 

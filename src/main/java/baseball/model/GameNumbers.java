@@ -1,5 +1,7 @@
 package baseball.model;
 
+import baseball.common.BaseBallConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -16,10 +18,10 @@ public class GameNumbers {
         int count = 0;
         for (int i = 0; i < numbers.size(); i++) {
             GameNumber gameNumber = this.getGameNumber(i);
-            if (gameNumber.equals(gameNumbers.getGameNumber((i + 1) % 3))) {
+            if (gameNumber.equals(gameNumbers.getGameNumber((i + 1) % BaseBallConstants.GAME_RULE_LENGTH))) {
                 count++;
             }
-            if (gameNumber.equals(gameNumbers.getGameNumber((i + 2) % 3))) {
+            if (gameNumber.equals(gameNumbers.getGameNumber((i + 2) % BaseBallConstants.GAME_RULE_LENGTH))) {
                 count++;
             }
         }

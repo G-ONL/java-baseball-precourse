@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.common.BaseBallConstants;
 import nextstep.utils.Randoms;
 
 import java.util.LinkedHashSet;
@@ -10,7 +11,7 @@ public class Computer{
 
     public Computer() {
         Set<GameNumber> numbers = new LinkedHashSet<>();
-        while (numbers.size() != 3) {
+        while (numbers.size() != BaseBallConstants.GAME_RULE_LENGTH) {
             numbers.add(new GameNumber(Randoms.pickNumberInRange(1, 9)));
         }
         this.targetNumbers = new GameNumbers(numbers);

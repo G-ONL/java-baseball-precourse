@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.common.BaseBallConstants;
 import baseball.model.BaseBallGame;
 import baseball.model.Computer;
 import baseball.model.Player;
@@ -21,10 +22,10 @@ public class BaseBallGameController {
     public static boolean isGameContinue() {
         do {
             int gameContinueNumber = InputView.inputGameContinue();
-            if ((gameContinueNumber) == 1) {
+            if (gameContinueNumber == BaseBallConstants.CONTINUE) {
                 return true;
             }
-            if (gameContinueNumber == 2) {
+            if (gameContinueNumber == BaseBallConstants.END) {
                 return false;
             }
         } while (true);
