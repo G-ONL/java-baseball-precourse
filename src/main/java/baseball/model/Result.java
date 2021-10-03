@@ -2,7 +2,7 @@ package baseball.model;
 
 public class Result {
 
-    public Result() {
+    public Result(int ballCount, int strikeCount) {
 
     }
 

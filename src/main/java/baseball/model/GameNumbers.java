@@ -12,6 +12,20 @@ public class GameNumbers {
         this.numbers = new ArrayList(numbers);
     }
 
+    public int countBall(GameNumbers gameNumbers) {
+        int count = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            GameNumber gameNumber = this.getGameNumber(i);
+            if (gameNumber.equals(gameNumbers.getGameNumber((i + 1) % 3))) {
+                count++;
+            }
+            if (gameNumber.equals(gameNumbers.getGameNumber((i + 2) % 3))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public int countStrike(GameNumbers gameNumbers) {
         int count = 0;
         for (int i = 0; i < numbers.size(); i++) {
