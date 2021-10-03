@@ -4,7 +4,7 @@ import nextstep.utils.Console;
 
 public class InputView {
 
-    public static String input() {
+    public static String inputGameNumber() {
         String input;
         do {
             input = Console.readLine();
