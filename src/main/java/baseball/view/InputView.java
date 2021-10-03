@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.common.ViewConstants;
 import nextstep.utils.Console;
 
 public class InputView {
@@ -7,6 +8,7 @@ public class InputView {
     public static String inputGameNumber() {
         String input;
         do {
+            OutputView.outputNotLineBreak(ViewConstants.REQUEST_INPUT_NUMBER);
             input = Console.readLine();
         } while (!Validator.isValidInputGameNumber(input));
         return input;
@@ -15,7 +17,7 @@ public class InputView {
     public static int inputGameContinue() {
         String input;
         do {
-            OutputView.output("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
+            OutputView.output(ViewConstants.REQUEST_CONTINUE);
             input = Console.readLine();
         } while (!Validator.isValidInputGameContinue(input));
         return Integer.parseInt(input);

@@ -1,5 +1,7 @@
 package baseball.view;
 
+import baseball.common.ViewConstants;
+
 import java.util.Set;
 
 public class Validator {
@@ -52,28 +54,28 @@ public class Validator {
 
     private static boolean isOneOrTwo(String input) {
         if (!(input.equals("1") || input.equals("2"))) {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
     }
 
     private static boolean lengthCheck(Set value) {
         if (value.size() != GAME_RULE_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
     }
 
     private static boolean isZero(int input) {
         if (input == 0) {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return false;
     }
 
     private static boolean lengthCheck(String input) {
         if (input.length() != GAME_RULE_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
     }
@@ -82,7 +84,7 @@ public class Validator {
         char[] inputChars = input.toCharArray();
         for (char inputChar : inputChars) {
             if (!Character.isDigit(inputChar)) {
-                throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+                throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
             }
         }
         return true;
@@ -90,14 +92,14 @@ public class Validator {
 
     private static boolean isContainZero(String input) {
         if (input.contains("0")) {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
     }
 
     private static boolean isEmpty(String input) {
         if (input == null || input == "") {
-            throw new IllegalArgumentException("[ERROR] 다시 값을 입력해주세요");
+            throw new IllegalArgumentException(ViewConstants.REQUEST_RE_INPUT_NUMBER);
         }
         return true;
     }

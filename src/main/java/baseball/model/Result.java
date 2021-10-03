@@ -1,5 +1,7 @@
 package baseball.model;
 
+import baseball.common.ViewConstants;
+
 public class Result {
     private int ballCount;
     private int strikeCount;
@@ -16,11 +18,11 @@ public class Result {
 
     public String gameResult() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (isNotThing()) return "낫싱";
-        if (strikeCount > 0) stringBuilder.append(strikeCount).append("스트라이크");
+        if (isNotThing()) return ViewConstants.NOTING;
+        if (strikeCount > 0) stringBuilder.append(strikeCount).append(ViewConstants.STRIKE);
         if (strikeCount > 0 && ballCount > 0) stringBuilder.append(" ");
-        if (ballCount > 0) stringBuilder.append(ballCount).append("볼");
-        if (strikeCount == 3) stringBuilder.append("\n").append("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        if (ballCount > 0) stringBuilder.append(ballCount).append(ViewConstants.BALL);
+        if (strikeCount == 3) stringBuilder.append("\n").append(ViewConstants.GAME_END);
         return stringBuilder.toString();
     }
 
