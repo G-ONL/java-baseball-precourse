@@ -1,6 +1,9 @@
 package baseball.controller;
 
-import baseball.model.*;
+import baseball.model.BaseBallGame;
+import baseball.model.Computer;
+import baseball.model.Player;
+import baseball.model.Result;
 
 public class BaseBallGameController {
 
@@ -9,9 +12,9 @@ public class BaseBallGameController {
         Result result;
         do {
             Player player = new Player(BaseBallGame.createGameNumbers());
-            result = GameMather.match(player, computer);
-        } while (result.isContinue());
-        //return result
+            result = BaseBallGame.match(player, computer);
+            BaseBallGame.gameResult(result);
+        } while (result.isMatchContinue());
     }
 
 

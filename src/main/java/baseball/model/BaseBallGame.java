@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.view.InputView;
+import baseball.view.OutputView;
 import baseball.view.Validator;
 
 import java.util.LinkedHashSet;
@@ -18,5 +19,15 @@ public class BaseBallGame {
             }
         } while (!Validator.isValidGameNumbers(gameNumbers));
         return new GameNumbers(gameNumbers);
+    }
+
+    public static Result match(Player player, Computer computer) {
+        int ballCount = computer.getTargetNumbers().countBall(player.getGameNumbers());
+        int strikeCount = computer.getTargetNumbers().countStrike(player.getGameNumbers());
+        return new Result(ballCount, strikeCount);
+    }
+
+    public static void gameResult(Result result) {
+        OutputView.output(result.gameResult());
     }
 }
