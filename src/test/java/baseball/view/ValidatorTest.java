@@ -13,28 +13,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidatorTest {
 
-    @DisplayName("문자가 포함되어 있으면 false, 오직 숫자면 true")
+    @DisplayName("길이가 3가 아닌, 숫자가 아닌, 빈 문자열, null, 0이 포함된 경우 return false")
     @ParameterizedTest
-    @CsvSource({"1,true", "문,false"})
-    void 문자_여부_판별(char value, boolean isOnlyNumber) {
-        assertEquals(Validator.isNumber(value), isOnlyNumber);
+    @CsvSource(value = {"1234,false", "문자열,false", "null,false", " ,false", ",false", "012,false",}, nullValues = {"null"})
+    void 인풋값_길이_3이_아니거나_문자이거나_0포함_일_경우_false(String input, boolean isValid) {
+        assertEquals(Validator.isValidInput(input), isValid);
     }
 
-    @DisplayName("숫자0이 포함되어 있으면 true, 아니면 false")
-    @ParameterizedTest
-    @CsvSource({"0,true", "1,false", "아,false"})
-    void 숫자_0을_포함_여부_판별(char value, boolean isContainZero) {
-        assertEquals(Validator.isZero(value), isContainZero);
-    }
-
-    @DisplayName("Set의 요소가 3개이면 true, 아니면 false")
+    @DisplayName("길이가 3가 이고, 숫자, 0이 포함 안 된 경우 return true")
     @Test
-    void Set_길이_3_일_때_True() {
-        Set<Integer> numbers = new HashSet<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(3);
-        assertThat(Validator.lengthCheck(numbers)).isTrue();
+    void 인풋값_길이_3이고_숫자이고_0이_없을경우_true() {
+        String input = "123";
+        assertThat(Validator.isValidInput(input)).isTrue();
+    }
+
+    @DisplayName("0인 경우 return false")
+    @Test
+    void game_number_0인_경우_false() {
+        Validator.isValidGameNumber(0);
+    }
+
+    @DisplayName("0이 아닌 경우 return true")
+    @Test
+    void game_number_0이_아닌_경우_성공() {
+        assertThat(Validator.isValidGameNumber(1)).isTrue();
+    }
+
+    @DisplayName("길이가 3이 아닌 경우 return false")
+    @Test
+    void game_numbers_size_3이_아닌_경우_false() {
+        Set<Integer> integers = new HashSet<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+        integers.add(4);
+        assertThat(Validator.isValidGameNumbers(integers)).isFalse();
+    }
+
+    @DisplayName("길이가 3인 경우 return true")
+    @Test
+    void game_numbers_size_3인_경우_true() {
+        Set<Integer> integers = new HashSet<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+        assertThat(Validator.isValidGameNumbers(integers)).isTrue();
     }
 }
