@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class GameNumbers {
-
     private List<GameNumber> numbers = new ArrayList<>();
 
     public GameNumbers(Set<GameNumber> numbers) {
@@ -15,30 +14,45 @@ public class GameNumbers {
     }
 
     public int countBall(GameNumbers gameNumbers) {
-        int count = 0;
+        int count = BaseBallConstants.ZERO_POINT;
         for (int i = 0; i < numbers.size(); i++) {
-            GameNumber gameNumber = this.getGameNumber(i);
-            if (gameNumber.equals(gameNumbers.getGameNumber((i + 1) % BaseBallConstants.GAME_RULE_LENGTH))) {
-                count++;
-            }
-            if (gameNumber.equals(gameNumbers.getGameNumber((i + 2) % BaseBallConstants.GAME_RULE_LENGTH))) {
-                count++;
-            }
+            count += countBallDifferentLocation(gameNumbers, i);
         }
         return count;
     }
 
     public int countStrike(GameNumbers gameNumbers) {
-        int count = 0;
+        int count = BaseBallConstants.ZERO_POINT;
         for (int i = 0; i < numbers.size(); i++) {
-            if (this.getGameNumber(i).equals(gameNumbers.getGameNumber((i)))) {
-                count++;
-            }
+            count += getCountWhenSameIndexSameGameNumber(gameNumbers, i);
         }
         return count;
     }
 
     public GameNumber getGameNumber(int i) {
         return this.numbers.get(i);
+    }
+
+    private int countBallDifferentLocation(GameNumbers gameNumbers, int index) {
+        int count = BaseBallConstants.ZERO_POINT;
+        for (int comparisonIndex = 1; comparisonIndex < BaseBallConstants.GAME_RULE_LENGTH; comparisonIndex++) {
+            count += getCountWhenDifferentLocationSameGameNumber(gameNumbers, index, comparisonIndex);
+        }
+        return count;
+    }
+
+    private int getCountWhenDifferentLocationSameGameNumber(GameNumbers gameNumbers, int index, int comparisonIndex) {
+        GameNumber gameNumber = this.getGameNumber(index);
+        if (gameNumber.equals(gameNumbers.getGameNumber((index + comparisonIndex) % BaseBallConstants.GAME_RULE_LENGTH))) {
+            return BaseBallConstants.ONE_POINT;
+        }
+        return BaseBallConstants.ZERO_POINT;
+    }
+
+    private int getCountWhenSameIndexSameGameNumber(GameNumbers gameNumbers, int i) {
+        if (this.getGameNumber(i).equals(gameNumbers.getGameNumber(i))) {
+            return BaseBallConstants.ONE_POINT;
+        }
+        return BaseBallConstants.ZERO_POINT;
     }
 }
