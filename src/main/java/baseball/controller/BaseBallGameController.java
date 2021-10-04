@@ -10,7 +10,7 @@ import baseball.view.InputView;
 public class BaseBallGameController {
 
     public static void gameStart() {
-        Computer computer = new Computer();
+        Computer computer = new Computer(BaseBallGame.createRandomGameNumbers());
         Result result;
         do {
             Player player = new Player(BaseBallGame.createGameNumbers());

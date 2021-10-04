@@ -34,7 +34,7 @@ public class GameNumbersTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 3, 5);
-            computerNumbers = new Computer().getTargetNumbers();
+            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
         }
         assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(1);
     }
@@ -46,7 +46,7 @@ public class GameNumbersTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(3, 1, 2);
-            computerNumbers = new Computer().getTargetNumbers();
+            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
         }
         assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(0);
     }
@@ -58,7 +58,7 @@ public class GameNumbersTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(3, 1, 2);
-            computerNumbers = new Computer().getTargetNumbers();
+            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
         }
         assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(3);
     }
@@ -70,7 +70,7 @@ public class GameNumbersTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 2, 3);
-            computerNumbers = new Computer().getTargetNumbers();
+            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
         }
         assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(0);
     }

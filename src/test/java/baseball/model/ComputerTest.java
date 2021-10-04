@@ -16,10 +16,10 @@ public class ComputerTest {
             mockRandoms
                     .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                     .thenReturn(1, 3, 5);
-            Computer computer = new Computer();
+            Computer computer = new Computer(BaseBallGame.createRandomGameNumbers());
             int index = 0;
-            assertThat(computer.getTargetNumbers()).isInstanceOf(GameNumbers.class);
-            assertThat(computer.getTargetNumbers().getGameNumber(index)).isEqualTo(new GameNumber(1));
+            assertThat(computer.getGameNumbers()).isInstanceOf(GameNumbers.class);
+            assertThat(computer.getGameNumbers().getGameNumber(index)).isEqualTo(new GameNumber(1));
         }
     }
 }
