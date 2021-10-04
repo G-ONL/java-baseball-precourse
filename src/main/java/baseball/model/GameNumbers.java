@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class GameNumbers {
+
     private List<GameNumber> numbers = new ArrayList<>();
 
     public GameNumbers(Set<GameNumber> numbers) {

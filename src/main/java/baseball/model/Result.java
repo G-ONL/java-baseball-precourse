@@ -4,6 +4,7 @@ import baseball.common.BaseBallConstants;
 import baseball.common.ViewConstants;
 
 public class Result {
+
     private int ballCount;
     private int strikeCount;
 
