@@ -29,7 +29,7 @@ public class BaseBallGameTest {
 
     @DisplayName("player와 computer match return result ")
     @Test
-    void match_1스트라이크_1볼(){
+    void match_1스트라이크_1볼() {
         try (final MockedStatic<InputView> mockInputViews = mockStatic(InputView.class);
              final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
             mockInputViews
@@ -42,8 +42,8 @@ public class BaseBallGameTest {
                     .thenReturn(1, 3, 5);
             Player player = new Player(BaseBallGame.createGameNumbers());
             Computer computer = new Computer(BaseBallGame.createRandomGameNumbers());
-            assertThat(BaseBallGame.match(player,computer).gameResult()).isEqualTo("1스트라이크 1볼");
+            assertThat(BaseBallGame.match(player, computer).gameResult()).isEqualTo("1스트라이크 1볼");
         }
-        
+
     }
 }

@@ -14,7 +14,7 @@ public class BaseBallGameControllerTest {
     @DisplayName("1이면 True, 2면 False")
     @ParameterizedTest
     @CsvSource({"1,true", "2,false"})
-    void 숫자_1이면_true_2면_false(String input, boolean isContinue) {
+    void 게임_지속_여부_숫자_1이면_true_2면_false(String input, boolean isContinue) {
         try (final MockedStatic<Console> mockConsole = mockStatic(Console.class)) {
             mockConsole.when(() -> Console.readLine())
                     .thenReturn(input);

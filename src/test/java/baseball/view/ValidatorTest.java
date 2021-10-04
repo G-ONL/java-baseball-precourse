@@ -49,7 +49,7 @@ public class ValidatorTest {
 
     @DisplayName("0이 아닌 경우 return true")
     @Test
-    void game_number_0이_아닌_경우_성공() {
+    void game_number_0이_아닌_경우_true() {
         assertThat(Validator.isValidGameNumber(1)).isTrue();
     }
 

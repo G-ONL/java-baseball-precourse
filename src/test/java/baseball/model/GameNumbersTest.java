@@ -3,6 +3,7 @@ package baseball.model;
 import nextstep.utils.Randoms;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -27,51 +28,56 @@ public class GameNumbersTest {
         playerNumbers = new GameNumbers(gameNumbers);
     }
 
-    @DisplayName("위치와 숫자가 같은게 1개 return 1")
-    @Test
-    void 스트라이크_세기_위치_숫자_같은_것이_1개() {
-        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
-            mockRandoms
-                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(1, 3, 5);
-            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
+    @Nested
+    class 플레이어_숫자가_123_일_때 {
+        @DisplayName("123, 135 스트라이크 개수 1개 return 1")
+        @Test
+        void 컴퓨터_숫자_135_스트라이크_개수_1개() {
+            try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+                mockRandoms
+                        .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                        .thenReturn(1, 3, 5);
+                computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
+            }
+            assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(1);
         }
-        assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(1);
+
+        @DisplayName("123, 312 스트라이크 개수 0개 return 0")
+        @Test
+        void 컴퓨터_숫자_312_스트라이크_개수_0개() {
+            try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+                mockRandoms
+                        .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                        .thenReturn(3, 1, 2);
+                computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
+            }
+            assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(0);
+        }
+
+        @DisplayName("123, 312 볼 개수 3개 return 3")
+        @Test
+        void 컴퓨터_숫자_312_볼_개수_3개() {
+            try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+                mockRandoms
+                        .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                        .thenReturn(3, 1, 2);
+                computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
+            }
+            assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(3);
+        }
+
+        @DisplayName("123, 123 볼 개수 0개 return 0")
+        @Test
+        void 컴퓨터_숫자_123_볼_개수_0개() {
+            try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
+                mockRandoms
+                        .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
+                        .thenReturn(1, 2, 3);
+                computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
+            }
+            assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(0);
+        }
     }
 
-    @DisplayName("위치만 다르고, 숫자는 같음 return 0")
-    @Test
-    void 스트라이크_세기_숫자가_같고_위치가_다름() {
-        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
-            mockRandoms
-                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(3, 1, 2);
-            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
-        }
-        assertThat(playerNumbers.countStrike(computerNumbers)).isEqualTo(0);
-    }
 
-    @DisplayName("위치만 다르고, 숫자는 같음 return 3")
-    @Test
-    void 볼_세기_숫자가_같고_위치가_다름() {
-        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
-            mockRandoms
-                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(3, 1, 2);
-            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
-        }
-        assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(3);
-    }
-
-    @DisplayName("위치가 같고, 숫자도 같음 return 0")
-    @Test
-    void 볼_세기_숫자가_같고_위치가_같음() {
-        try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
-            mockRandoms
-                    .when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
-                    .thenReturn(1, 2, 3);
-            computerNumbers = new Computer(BaseBallGame.createRandomGameNumbers()).getGameNumbers();
-        }
-        assertThat(playerNumbers.countBall(computerNumbers)).isEqualTo(0);
-    }
 }

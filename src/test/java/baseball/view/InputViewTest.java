@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mockStatic;
 
 public class InputViewTest {
 
-    @DisplayName("3인 숫자가 아닐 때는 재입력 요청")
+    @DisplayName("3자리 숫자가 아닐 때는 재입력 요청")
     @Test
     void 길이가_3인_숫자_입력받기() {
         try (final MockedStatic<Console> mockConsole = mockStatic(Console.class)) {
